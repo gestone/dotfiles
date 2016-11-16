@@ -20,15 +20,24 @@ set scrolloff=5
 
 set autoread
 
-nmap <leader>ne :NERDTree<cr>
 nmap <leader>w :w!<cr>
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-autocmd BufWinEnter * NERDTreeMirror
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+
+let g:ctrlp_user_command = 'find %s -type f'
 
 
 set so=7
+
 
 set wildmenu
 
@@ -121,6 +130,8 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
+map <silent> <Leader>e :Errors<CR>
+map <Leader>s :SyntasticToggleMode<CR>
 
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>q :xa<CR>
